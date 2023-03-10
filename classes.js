@@ -36,6 +36,19 @@ console.log("This is example result: ", fred.task());
   * dimensions (These represent the character's size in the video game)
   * destroy() // A method that returns: `${this.name} was removed from the game.`
 */
+class GameObject {
+  constructor(attributes) {
+    this.createdAt = attributes.createdAt;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
+  }
+
+  destroy() {
+    return `${this.name} was removed from the game.`;
+  }
+}
+
+
 
 /*
   === CharacterStats ===
@@ -43,6 +56,16 @@ console.log("This is example result: ", fred.task());
   * takeDamage() // A method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's method
 */
+class CharacterStats extends GameObject {
+  constructor(attributes) {
+    super(attributes);
+    this.healthPoints = attributes.healthPoints;
+  }
+
+  takeDamage() {
+    return `${this.name} took damage.`;
+  }
+}
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -53,6 +76,18 @@ console.log("This is example result: ", fred.task());
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
+class Humanoid extends CharacterStats {
+  constructor(attributes) {
+    super(attributes);
+    this.team = attributes.team;
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+  }
+
+  greet() {
+    return `${this.name} offers a greeting in ${this.language}.`;
+  }
+}
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -62,7 +97,7 @@ console.log("This is example result: ", fred.task());
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -123,9 +158,12 @@ console.log("This is example result: ", fred.task());
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+
 
   // Stretch task: 
   // * Create Villain and Hero class that inherit from the Humanoid class.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  
+  
