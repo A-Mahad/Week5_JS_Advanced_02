@@ -20,5 +20,5 @@ function Person(name, age, hobby) {
 // Console log all your results
 
 
-const Me = new Person("John", 30, "Reading Quran");
+const Me = new Person("Ahmed", 30, "Reading Quran");
 Me.speak(); // Hi, my name is John and I'm 30 years old.
